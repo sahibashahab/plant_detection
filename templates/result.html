@@ -1,0 +1,38 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Identification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Plant: {{ plant_label }}</h1>
+        {% if plant_details %}
+            <div class="plant-info">
+                <h2>Description:</h2>
+                <p>{{ plant_details['description'] }}</p>
+
+                <h2>Uses:</h2>
+                <ul>
+                    {% for use in plant_details['uses'] %}
+                        <li>{{ use }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h2>Benefits:</h2>
+                <ul>
+                    {% for benefit in plant_details['benefits'] %}
+                        <li>{{ benefit }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>No information available for this plant.</p>
+        {% endif %}
+        <a href="/" class="btn">Upload another image</a>
+    </div>
+</body>
+</html>
